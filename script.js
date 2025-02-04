@@ -103,3 +103,40 @@ const carousel = () => {
 
 // Initialize carousel
 document.addEventListener('DOMContentLoaded', carousel);
+
+// Add this to your existing script.js file
+document.addEventListener('DOMContentLoaded', function() {
+  const buttons = document.querySelectorAll('.nav-btn');
+  const sections = document.querySelectorAll('.content-section');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', function() {
+      // Remove active class from all buttons and sections
+      buttons.forEach(btn => btn.classList.remove('active'));
+      sections.forEach(section => section.classList.remove('active'));
+
+      // Add active class to clicked button
+      this.classList.add('active');
+
+      // Show the corresponding section
+      const target = this.getAttribute('data-content');
+      document.getElementById(target).classList.add('active');
+    });
+  });
+});
+
+// Add this to your existing script.js file
+document.addEventListener('scroll', function() {
+  const buttons = document.querySelectorAll('.nav-btn');
+  const scrollPosition = window.scrollY;
+
+  buttons.forEach((button, index) => {
+    if (scrollPosition > 50) { // Adjust this value as needed
+      setTimeout(() => {
+        button.classList.add('scrolled');
+      }, index * 100); // 100ms delay between each button
+    } else {
+      button.classList.remove('scrolled');
+    }
+  });
+});
