@@ -2,126 +2,96 @@ const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 
 hamburger.addEventListener('click', () => {
-  navMenu.classList.toggle('active');
-  hamburger.classList.toggle('active');
+  if (window.innerWidth <= 768) {
+    navMenu.classList.toggle('active');
+    hamburger.classList.toggle('active');
+  }
 });
 
-// Submenu toggle
+// Simplified mobile toggle
 document.querySelectorAll('.has-submenu > a').forEach(item => {
   item.addEventListener('click', function(e) {
     if (window.innerWidth <= 768) {
-      // Check if the click was on the indicator
-      const isIndicatorClick = e.target.tagName === 'path' || e.target.tagName === 'svg';
-      
-      if (!isIndicatorClick) {
-        // If clicking the main link, close the menu
-        navMenu.classList.remove('active');
-        hamburger.classList.remove('active');
-        return;
-      }
-      
-      // If clicking the indicator, toggle submenu
-      e.preventDefault();
       const parent = this.parentElement;
       const submenu = parent.querySelector('.submenu');
       
-      // Close other submenus
-      document.querySelectorAll('.has-submenu.active').forEach(activeItem => {
-        if (activeItem !== parent) {
-          activeItem.classList.remove('active');
-          activeItem.querySelector('.submenu').style.maxHeight = '0';
-        }
-      });
+      if (!submenu) return;
       
-      // Toggle current submenu
+      e.preventDefault();
       parent.classList.toggle('active');
-      if (parent.classList.contains('active')) {
-        submenu.style.maxHeight = submenu.scrollHeight + 'px';
-      } else {
-        submenu.style.maxHeight = '0';
-      }
+      submenu.style.maxHeight = parent.classList.contains('active') 
+        ? submenu.scrollHeight + 'px' 
+        : '0';
     }
   });
 });
 
-// Close menu when clicking a subcategory link
+// Close menu when clicking a subcategory link (mobile only)
 document.querySelectorAll('.submenu a').forEach(link => {
   link.addEventListener('click', () => {
-    navMenu.classList.remove('active');
-    hamburger.classList.remove('active');
+    if (window.innerWidth <= 768) {
+      navMenu.classList.remove('active');
+      hamburger.classList.remove('active');
+    }
   });
 });
 
-// Close menu when clicking outside
+// Close menu when clicking outside (mobile only)
 document.addEventListener('click', (e) => {
-  if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+  if (window.innerWidth <= 768 && !hamburger.contains(e.target) && !navMenu.contains(e.target)) {
     navMenu.classList.remove('active');
     hamburger.classList.remove('active');
   }
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-  console.log('Script loaded');
-
-  const megaMenu = document.querySelector('.mega-menu');
-  const categoryImage = document.querySelector('.category-image');
-
-  // Debugging: Check if elements exist
-  console.log('Mega menu:', megaMenu);
-  console.log('Category image:', categoryImage);
-
-  if (!megaMenu) {
-    console.error('Mega menu element not found');
-    return;
-  }
-
-  if (!categoryImage) {
-    console.error('Category image element not found');
-    return;
-  }
-
-  // Test: Force show first image
-  categoryImage.src = 'images/img1.jpg';
-  categoryImage.style.opacity = '1';
-  setTimeout(() => {
-    categoryImage.style.opacity = '0';
-  }, 3000);
-
-  // Regular functionality
-  megaMenu.addEventListener('mouseover', (e) => {
-    const listItem = e.target.closest('li');
-    if (listItem && listItem.dataset.image) {
-      console.log('Hovering:', listItem.textContent);
-      console.log('Image path:', listItem.dataset.image);
-      
-      categoryImage.src = listItem.dataset.image;
-      categoryImage.style.opacity = '1';
-    }
-  });
-
-  megaMenu.addEventListener('mouseout', () => {
-    categoryImage.style.opacity = '0';
-  });
-
-  const toggleButton = document.querySelector('.toggle-button');
-  
-  if (toggleButton) {
-    toggleButton.addEventListener('click', function() {
-      const quickLinks = document.querySelector('.quick-links');
-      const plusSign = this.querySelector('span');
-      
-      quickLinks.classList.toggle('active');
-      plusSign.textContent = quickLinks.classList.contains('active') ? '-' : '+';
+// Desktop hover functionality
+document.querySelectorAll('.has-submenu').forEach(item => {
+  if (window.innerWidth > 768) {
+    item.addEventListener('mouseenter', () => {
+      const submenu = item.querySelector('.submenu');
+      if (submenu) submenu.style.display = 'block';
     });
-  } else {
-    console.error('Toggle button not found - check your HTML element with class "toggle-button"');
-  }
-
-  // Remove image preview functionality on mobile
-  if (window.innerWidth <= 768) {
-    if (megaMenu) {
-      megaMenu.removeEventListener('mouseover');
-      megaMenu.removeEventListener('mouseout');
-    }
+    
+    item.addEventListener('mouseleave', () => {
+      const submenu = item.querySelector('.submenu');
+      if (submenu) submenu.style.display = 'none';
+    });
   }
 });
+
+// Fix the mega-menu height adjustment
+document.querySelectorAll('.mega-menu').forEach(menu => {
+  const viewportHeight = window.innerHeight;
+  const menuHeight = menu.scrollHeight;
+  
+  if (menuHeight > viewportHeight * 0.8) {
+    menu.style.maxHeight = '80vh';
+  } else {
+    menu.style.maxHeight = 'auto';
+  }
+});
+
+// Carousel functionality
+const carousel = () => {
+  const carouselInner = document.querySelector('.carousel-inner');
+  const items = document.querySelectorAll('.carousel-item');
+  let currentIndex = 0;
+
+  const rotateCarousel = () => {
+    currentIndex = (currentIndex + 1) % items.length;
+    carouselInner.style.transform = `translateX(-${currentIndex * 100}%)`;
+  };
+
+  // Start auto rotation
+  let carouselInterval = setInterval(rotateCarousel, 5000);
+
+  // Pause on hover
+  const carouselContainer = document.querySelector('.carousel');
+  carouselContainer.addEventListener('mouseenter', () => clearInterval(carouselInterval));
+  carouselContainer.addEventListener('mouseleave', () => {
+    carouselInterval = setInterval(rotateCarousel, 5000);
+  });
+};
+
+// Initialize carousel
+document.addEventListener('DOMContentLoaded', carousel);
