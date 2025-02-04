@@ -104,7 +104,7 @@ const carousel = () => {
 // Initialize carousel
 document.addEventListener('DOMContentLoaded', carousel);
 
-// Add this to your existing script.js file
+// Update the button click event listener
 document.addEventListener('DOMContentLoaded', function() {
   const buttons = document.querySelectorAll('.nav-btn');
   const sections = document.querySelectorAll('.content-section');
@@ -120,7 +120,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // Show the corresponding section
       const target = this.getAttribute('data-content');
-      document.getElementById(target).classList.add('active');
+      const targetSection = document.getElementById(target);
+      
+      if (targetSection) {
+        targetSection.classList.add('active');
+        // Scroll to the section smoothly
+        targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     });
   });
 });
