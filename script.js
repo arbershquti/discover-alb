@@ -140,3 +140,26 @@ document.addEventListener('scroll', function() {
     }
   });
 });
+
+// Add this to handle preview window clicks
+document.querySelectorAll('.preview-window').forEach(preview => {
+  preview.addEventListener('click', function(e) {
+    // Only navigate if clicking the "Read More" link
+    if (!e.target.classList.contains('read-more')) {
+      const link = this.querySelector('.read-more');
+      if (link) {
+        window.location.href = link.href;
+      }
+    }
+  });
+});
+
+// Add this to handle destination preview clicks
+document.querySelector('.destination-preview').addEventListener('click', function(e) {
+  if (!e.target.classList.contains('read-more')) {
+    const link = this.querySelector('.read-more');
+    if (link) {
+      window.location.href = link.href;
+    }
+  }
+});

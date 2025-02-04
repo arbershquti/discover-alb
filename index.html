@@ -51,6 +51,8 @@
                 </svg>
               </a>
               <ul class="submenu">
+                <li><a href="popular-destinations.html">Popular Destinations</a></li>
+                <li><a href="blog/must-visit-places.html">Must Visit Places</a></li>
                 <li><a href="#">History & Culture</a></li>
                 <li><a href="#">Geography</a></li>
                 <li><a href="#">Traditional Cuisine</a></li>
@@ -103,19 +105,8 @@
               </ul>
             </li>
 
-            <li class="has-submenu">
-              <a href="/rent-locals">
-                Rent Locals
-                <svg class="dropdown-indicator" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M6 9l6 6 6-6"/>
-                </svg>
-              </a>
-              <ul class="submenu">
-                <li><a href="#">Guides</a></li>
-                <li><a href="#">Transportation</a></li>
-                <li><a href="#">Equipment</a></li>
-                <li><a href="#">Local Experts</a></li>
-              </ul>
+            <li>
+              <a href="/rent-locals">Rent Locals</a>
             </li>
           </ul>
         </nav>
@@ -151,19 +142,36 @@
 
       <!-- New Navigation Buttons -->
       <div class="content-navigation">
-        <button class="nav-btn active" data-content="about">Popular Destinations</button>
-        <button class="nav-btn" data-content="culture">Must Visit Places</button>
-        <button class="nav-btn" data-content="nature">What to Do</button>
-        <button class="nav-btn" data-content="travel">Local Homestays</button>
-        <button class="nav-btn" data-content="cuisine">Get a Guide</button>
+        <div class="nav-btn active" data-content="about">
+          Popular Destinations
+        </div>
+        <div class="nav-btn" data-content="culture">
+          Must Visit Places
+        </div>
+        <div class="nav-btn" data-content="nature">
+          What to Do
+        </div>
+        <div class="nav-btn" data-content="travel">
+          Local Homestays
+        </div>
+        <div class="nav-btn" data-content="cuisine">
+          Get a Guide
+        </div>
       </div>
 
 
       <!-- Content Sections -->
       <div class="content-sections">
         <section id="about" class="content-section active">
-          <h2>About Albania</h2>
-          <p>Discover the rich history and unique characteristics of Albania...</p>
+          <div class="destination-preview">
+            <img src="images/destination1.jpg" alt="Popular Destinations">
+            <div class="preview-overlay">
+
+              <h3>Popular Destinations</h3>
+              <p>Explore Albania's most stunning locations...</p>
+              <a href="popular-destinations.html" class="read-more">Discover More →</a>
+            </div>
+          </div>
         </section>
         
         <section id="culture" class="content-section">
