@@ -171,10 +171,13 @@ main {
     max-height: 1000px;
   }
 
-  /* Dropdown indicator */
+  /* Dropdown indicator positioning */
   .nav-menu li.has-submenu > a {
     position: relative;
-    padding-right: 30px;
+    padding-right: 40px; /* Space for the indicator */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .nav-menu li.has-submenu > a .dropdown-indicator {
@@ -189,6 +192,12 @@ main {
 
   .nav-menu li.has-submenu.active > a .dropdown-indicator {
     transform: translateY(-50%) rotate(180deg);
+  }
+
+  /* Ensure consistent spacing */
+  .nav-menu > ul > li {
+    position: relative;
+    padding: 1rem 0;
   }
 
   .container {
