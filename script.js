@@ -79,7 +79,15 @@ const carousel = () => {
 
   const rotateCarousel = () => {
     currentIndex = (currentIndex + 1) % items.length;
-    carouselInner.style.transform = `translateX(-${currentIndex * 100}%)`;
+    
+    // Move the first item to the end to create continuous effect
+    if (currentIndex === 0) {
+      carouselInner.appendChild(carouselInner.firstElementChild);
+    }
+    
+    // Slide to the next image
+    carouselInner.style.transition = 'transform 1s ease-in-out';
+    carouselInner.style.transform = `translateX(-${currentIndex * 50}%)`;
   };
 
   // Start auto rotation

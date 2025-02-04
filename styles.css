@@ -474,7 +474,6 @@ footer p {
   height: 605px;
   margin-top: 0;
   padding-top: 0;
-
 }
 
 .carousel-item img {
@@ -503,13 +502,24 @@ footer p {
 
 .carousel-inner {
   display: flex;
-  transition: transform 0.1s ease;
+  width: 200%; /* Double width to allow for overlap */
 }
 
-
 .carousel-item {
-  min-width: 100%;
+  min-width: 50%; /* Each item takes half the container */
   position: relative;
+  transition: transform 1s ease-in-out;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 
