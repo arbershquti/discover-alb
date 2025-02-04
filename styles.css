@@ -130,6 +130,8 @@ main {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     z-index: 99;
     border-radius: 8px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .nav-menu.active {
@@ -161,9 +163,9 @@ main {
 
   /* Submenu styles */
   .nav-menu .submenu {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
+    max-height: none;
+    overflow: visible;
+    transition: none;
     padding-left: 1rem;
   }
 
