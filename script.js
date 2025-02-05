@@ -159,13 +159,3 @@ document.querySelectorAll('.preview-window').forEach(preview => {
     }
   });
 });
-
-// Add this to handle destination preview clicks
-document.querySelector('.destination-preview').addEventListener('click', function(e) {
-  if (!e.target.classList.contains('read-more')) {
-    const link = this.querySelector('.read-more');
-    if (link) {
-      window.location.href = link.href;
-    }
-  }
-});

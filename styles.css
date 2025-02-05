@@ -302,11 +302,11 @@ footer p {
 }
 
 /* Mega Menu Styles */
-.mega-menu-parent {
+.mega-menu-parent { /* No matching HTML elements */
   position: relative;
 }
 
-.mega-menu {
+.mega-menu { /* Never displayed */
   position: absolute;
   top: calc(100% + 1px);
   left: 0;
@@ -619,7 +619,7 @@ footer p {
   }
 }
 
-.preview-window {
+.preview-window { /* No matching HTML elements */
   position: relative;
   cursor: pointer;
   padding: 1.5rem;
@@ -633,7 +633,7 @@ footer p {
   transform: translateY(-5px);
 }
 
-.preview-content {
+.preview-content { /* No matching HTML elements */
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -680,10 +680,10 @@ footer p {
 }
 
 /* Base styles for destination preview (Desktop) */
-.destination-preview {
+.destination-preview { /* No matching HTML elements */
   position: relative;
-  width: 40%; /* Keep the original desktop width */
-  height: 300px; /* Keep the original desktop height */
+  width: 40%;
+  height: 300px;
   border-radius: 12px;
   overflow: hidden;
   margin-bottom: 2rem;
@@ -696,7 +696,7 @@ footer p {
 }
 
 /* Desktop grid layout */
-.preview-grid {
+.preview-grid { /* No matching HTML elements */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
